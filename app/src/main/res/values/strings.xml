@@ -18,4 +18,18 @@
     <string name="days_left">%1$d days left</string>
     <string name="days_since">%1$d days since</string>
     <string name="complete">Complete</string>
+    <string name="ok">OK</string>
+    <string name="more_options">More options</string>
+    <string name="check_for_updates">Check for updates</string>
+    <string name="version_label">Version %1$s</string>
+    <string name="update_checking">Checking GitHub for a newer release…</string>
+    <string name="update_up_to_date_title">You\'re up to date</string>
+    <string name="update_up_to_date_body">Fossdroid %1$s is the latest release.</string>
+    <string name="update_failed_title">Couldn\'t check for updates</string>
+    <string name="update_available_title">Update %1$s available</string>
+    <string name="update_available_body">A newer Fossdroid release is on GitHub.</string>
+    <string name="update_banner_hint">Tap to download from GitHub</string>
+    <string name="download_update">Download</string>
+    <string name="view_on_github">View on GitHub</string>
+    <string name="open_releases">Open releases</string>
 </resources>

@@ -5,6 +5,9 @@ plugins {
     id("com.google.devtools.ksp")
 }
 
+val appVersionName = (findProperty("versionName") as String?) ?: "1.0.0"
+val appVersionCode = (findProperty("versionCode") as String?)?.toIntOrNull() ?: 1
+
 android {
     namespace = "com.fossdroid"
     compileSdk = 35
@@ -13,14 +16,28 @@ android {
         applicationId = "com.fossdroid"
         minSdk = 26
         targetSdk = 35
-        versionCode = 1
-        versionName = "1.0.0"
+        versionCode = appVersionCode
+        versionName = appVersionName
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "GITHUB_OWNER", "\"tiammue\"")
+        buildConfigField("String", "GITHUB_REPO", "\"Fossdroid\"")
+        buildConfigField(
+            "String",
+            "GITHUB_RELEASES_URL",
+            "\"https://github.com/tiammue/Fossdroid/releases\""
+        )
+    }
+
+    signingConfigs {
+        // FOSS CI releases use the debug keystore until a release keystore is configured.
+        getByName("debug")
     }
 
     buildTypes {
         release {
             isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("debug")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -80,6 +97,7 @@ dependencies {
 
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.9.0")
+    testImplementation("org.json:json:20240303")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")

@@ -1,0 +1,62 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Parse version from tag
+        id: version
+        run: |
+          TAG="${GITHUB_REF_NAME}"
+          VERSION="${TAG#v}"
+          IFS='.' read -r MAJOR MINOR PATCH <<< "${VERSION}.0.0"
+          MAJOR=${MAJOR:-0}
+          MINOR=${MINOR:-0}
+          PATCH=${PATCH:-0}
+          CODE=$((MAJOR * 10000 + MINOR * 100 + PATCH))
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "code=$CODE" >> "$GITHUB_OUTPUT"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+          cache: gradle
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Build release APK
+        run: |
+          ./gradlew assembleRelease --stacktrace \
+            "-PversionName=${{ steps.version.outputs.version }}" \
+            "-PversionCode=${{ steps.version.outputs.code }}"
+
+      - name: Prepare artifact
+        run: |
+          mkdir -p dist
+          cp app/build/outputs/apk/release/app-release.apk \
+            "dist/Fossdroid-${{ steps.version.outputs.version }}.apk"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.tag }}
+          name: Fossdroid ${{ steps.version.outputs.version }}
+          generate_release_notes: true
+          files: dist/Fossdroid-${{ steps.version.outputs.version }}.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
