@@ -75,10 +75,7 @@ jobs:
           generate_release_notes: true
           files: dist/Fossdown-${{ steps.version.outputs.version }}.apk
           body: |
-            ## Install notes
-            This build keeps application id `com.fossdown.prettyprogress` and a stable signing key,
-            so it updates your existing Fossdown / Pretty Progress install (and keeps your events).
+            Application id: `com.fossdown`
 
-            Uninstall any leftover empty `com.fossdroid` app if you still have it from the misnamed v1.0.0 build.
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

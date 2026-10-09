@@ -8,8 +8,6 @@ plugins {
 val appVersionName = (findProperty("versionName") as String?) ?: "1.0.0"
 val appVersionCode = (findProperty("versionCode") as String?)?.toIntOrNull() ?: 1
 
-// Keep the original applicationId so installs update the existing app (and its data).
-// Namespace (R/BuildConfig package) can differ from applicationId.
 val releaseStoreFile = System.getenv("SIGNING_STORE_FILE")
     ?: (findProperty("signingStoreFile") as String?)
 val releaseStorePassword = System.getenv("SIGNING_STORE_PASSWORD")
@@ -29,7 +27,7 @@ android {
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.fossdown.prettyprogress"
+        applicationId = "com.fossdown"
         minSdk = 26
         targetSdk = 35
         versionCode = appVersionCode

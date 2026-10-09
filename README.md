@@ -38,9 +38,9 @@ git tag v1.1.0
 git push origin v1.1.0
 ```
 
-GitHub Actions (`.github/workflows/release.yml`) builds a **stably signed** release APK and publishes it. CI on `main` runs unit tests and a debug build (`.github/workflows/ci.yml`).
+GitHub Actions (`.github/workflows/release.yml`) builds a stably signed release APK and publishes it. CI on `main` runs unit tests and a debug build (`.github/workflows/ci.yml`).
 
-The published `applicationId` remains `com.fossdown.prettyprogress` so updates replace the existing install and keep local event data. The launcher name is **Fossdown**.
+Application id: `com.fossdown`
 
 ### Signing secrets (repo Settings → Secrets)
 

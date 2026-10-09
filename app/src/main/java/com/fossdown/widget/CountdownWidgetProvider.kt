@@ -274,7 +274,7 @@ object WidgetUpdater {
 }
 
 object WidgetPrefs {
-    private const val PREFS = "pretty_progress_widgets"
+    private const val PREFS = "fossdown_widgets"
     private fun key(id: Int) = "event_$id"
 
     fun saveEventId(context: Context, appWidgetId: Int, eventId: Long) {
