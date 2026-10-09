@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Fossdroid</string>
+    <string name="app_tagline">Countdowns &amp; day trackers</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="widget_help">Long-press the Home screen → Widgets → Fossdroid.</string>
+    <string name="widget_label">Countdown</string>
+    <string name="widget_description">Countdown and progress widget for the Home screen</string>
+    <string name="widget_configure_title">Choose an event</string>
+    <string name="widget_tap_configure">Tap to configure</string>
+    <string name="add_event">Add event</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
+    <string name="countdown">Countdown</string>
+    <string name="count_up">Count up</string>
+    <string name="timer">Timer</string>
+    <string name="no_events">No events yet.\nTap + to create your first countdown.</string>
+    <string name="days_left">%1$d days left</string>
+    <string name="days_since">%1$d days since</string>
+    <string name="complete">Complete</string>
+</resources>

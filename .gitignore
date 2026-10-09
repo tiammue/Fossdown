@@ -1,0 +1,20 @@
+# Gradle / Android
+.gradle/
+**/build/
+local.properties
+*.iml
+.idea/
+.DS_Store
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.ap_
+*.aab
+*.hprof
+
+# Local tool caches
+.tools/
+
+# Kotlin
+.kotlin/
