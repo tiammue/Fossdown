@@ -45,8 +45,8 @@ jobs:
             exit 1
           fi
           mkdir -p keystore
-          echo "$SIGNING_KEYSTORE_BASE64" | base64 -d > keystore/fossdroid-release.jks
-          echo "SIGNING_STORE_FILE=$GITHUB_WORKSPACE/keystore/fossdroid-release.jks" >> "$GITHUB_ENV"
+          echo "$SIGNING_KEYSTORE_BASE64" | base64 -d > keystore/fossdown-release.jks
+          echo "SIGNING_STORE_FILE=$GITHUB_WORKSPACE/keystore/fossdown-release.jks" >> "$GITHUB_ENV"
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
@@ -65,20 +65,20 @@ jobs:
         run: |
           mkdir -p dist
           cp app/build/outputs/apk/release/app-release.apk \
-            "dist/Fossdroid-${{ steps.version.outputs.version }}.apk"
+            "dist/Fossdown-${{ steps.version.outputs.version }}.apk"
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.version.outputs.tag }}
-          name: Fossdroid ${{ steps.version.outputs.version }}
+          name: Fossdown ${{ steps.version.outputs.version }}
           generate_release_notes: true
-          files: dist/Fossdroid-${{ steps.version.outputs.version }}.apk
+          files: dist/Fossdown-${{ steps.version.outputs.version }}.apk
           body: |
             ## Install notes
             This build keeps application id `com.fossdown.prettyprogress` and a stable signing key,
-            so it updates your existing Fossdroid / Pretty Progress install (and keeps your events).
+            so it updates your existing Fossdown / Pretty Progress install (and keeps your events).
 
-            Uninstall the separate empty `com.fossdroid` app if you still have it from v1.0.0.
+            Uninstall any leftover empty `com.fossdroid` app if you still have it from the misnamed v1.0.0 build.
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

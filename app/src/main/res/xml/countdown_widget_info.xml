@@ -6,7 +6,7 @@
     android:targetCellHeight="2"
     android:updatePeriodMillis="900000"
     android:initialLayout="@layout/widget_countdown"
-    android:configure="com.fossdroid.widget.CountdownWidgetConfigureActivity"
+    android:configure="com.fossdown.widget.CountdownWidgetConfigureActivity"
     android:widgetCategory="home_screen"
     android:resizeMode="horizontal|vertical"
     android:widgetLayout="@layout/widget_countdown"

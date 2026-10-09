@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Fossdroid"
+rootProject.name = "Fossdown"
 include(":app")

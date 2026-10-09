@@ -25,7 +25,7 @@ val hasReleaseSigning = !releaseStoreFile.isNullOrBlank() &&
     file(releaseStoreFile!!).exists()
 
 android {
-    namespace = "com.fossdroid"
+    namespace = "com.fossdown"
     compileSdk = 35
 
     defaultConfig {
@@ -37,11 +37,11 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField("String", "GITHUB_OWNER", "\"tiammue\"")
-        buildConfigField("String", "GITHUB_REPO", "\"Fossdroid\"")
+        buildConfigField("String", "GITHUB_REPO", "\"Fossdown\"")
         buildConfigField(
             "String",
             "GITHUB_RELEASES_URL",
-            "\"https://github.com/tiammue/Fossdroid/releases\""
+            "\"https://github.com/tiammue/Fossdown/releases\""
         )
     }
 

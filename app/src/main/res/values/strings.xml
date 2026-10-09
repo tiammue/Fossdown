@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Fossdroid</string>
+    <string name="app_name">Fossdown</string>
     <string name="app_tagline">Countdowns &amp; day trackers</string>
     <string name="dashboard">Dashboard</string>
-    <string name="widget_help">Long-press the Home screen → Widgets → Fossdroid.</string>
+    <string name="widget_help">Long-press the Home screen → Widgets → Fossdown.</string>
     <string name="widget_label">Countdown</string>
     <string name="widget_description">Countdown and progress widget for the Home screen</string>
     <string name="widget_configure_title">Choose an event</string>
@@ -24,10 +24,10 @@
     <string name="version_label">Version %1$s</string>
     <string name="update_checking">Checking GitHub for a newer release…</string>
     <string name="update_up_to_date_title">You\'re up to date</string>
-    <string name="update_up_to_date_body">Fossdroid %1$s is the latest release.</string>
+    <string name="update_up_to_date_body">Fossdown %1$s is the latest release.</string>
     <string name="update_failed_title">Couldn\'t check for updates</string>
     <string name="update_available_title">Update %1$s available</string>
-    <string name="update_available_body">A newer Fossdroid release is on GitHub.</string>
+    <string name="update_available_body">A newer Fossdown release is on GitHub.</string>
     <string name="update_banner_hint">Tap to download from GitHub</string>
     <string name="download_update">Download</string>
     <string name="view_on_github">View on GitHub</string>
