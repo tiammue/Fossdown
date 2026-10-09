@@ -8,12 +8,28 @@ plugins {
 val appVersionName = (findProperty("versionName") as String?) ?: "1.0.0"
 val appVersionCode = (findProperty("versionCode") as String?)?.toIntOrNull() ?: 1
 
+// Keep the original applicationId so installs update the existing app (and its data).
+// Namespace (R/BuildConfig package) can differ from applicationId.
+val releaseStoreFile = System.getenv("SIGNING_STORE_FILE")
+    ?: (findProperty("signingStoreFile") as String?)
+val releaseStorePassword = System.getenv("SIGNING_STORE_PASSWORD")
+    ?: (findProperty("signingStorePassword") as String?)
+val releaseKeyAlias = System.getenv("SIGNING_KEY_ALIAS")
+    ?: (findProperty("signingKeyAlias") as String?)
+val releaseKeyPassword = System.getenv("SIGNING_KEY_PASSWORD")
+    ?: (findProperty("signingKeyPassword") as String?)
+val hasReleaseSigning = !releaseStoreFile.isNullOrBlank() &&
+    !releaseStorePassword.isNullOrBlank() &&
+    !releaseKeyAlias.isNullOrBlank() &&
+    !releaseKeyPassword.isNullOrBlank() &&
+    file(releaseStoreFile!!).exists()
+
 android {
     namespace = "com.fossdroid"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.fossdroid"
+        applicationId = "com.fossdown.prettyprogress"
         minSdk = 26
         targetSdk = 35
         versionCode = appVersionCode
@@ -30,14 +46,25 @@ android {
     }
 
     signingConfigs {
-        // FOSS CI releases use the debug keystore until a release keystore is configured.
-        getByName("debug")
+        if (hasReleaseSigning) {
+            create("release") {
+                storeFile = file(releaseStoreFile!!)
+                storePassword = releaseStorePassword
+                keyAlias = releaseKeyAlias
+                keyPassword = releaseKeyPassword
+            }
+        }
     }
 
     buildTypes {
         release {
             isMinifyEnabled = false
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = if (hasReleaseSigning) {
+                signingConfigs.getByName("release")
+            } else {
+                // Local unsigned-dev fallback only. CI must supply SIGNING_* secrets.
+                signingConfigs.getByName("debug")
+            }
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

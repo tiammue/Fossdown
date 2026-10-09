@@ -18,3 +18,9 @@ captures/
 
 # Kotlin
 .kotlin/
+
+# Signing keys (never commit)
+keystore/
+*.jks
+*.keystore
+*.b64

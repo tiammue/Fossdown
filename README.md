@@ -38,7 +38,18 @@ git tag v1.1.0
 git push origin v1.1.0
 ```
 
-GitHub Actions (`.github/workflows/release.yml`) builds the release APK and creates the release automatically. CI on `main` runs unit tests and a debug build (`.github/workflows/ci.yml`).
+GitHub Actions (`.github/workflows/release.yml`) builds a **stably signed** release APK and publishes it. CI on `main` runs unit tests and a debug build (`.github/workflows/ci.yml`).
+
+The published `applicationId` remains `com.fossdown.prettyprogress` so updates replace the existing install and keep local event data. The launcher name is still **Fossdroid**.
+
+### Signing secrets (repo Settings → Secrets)
+
+| Secret | Purpose |
+| --- | --- |
+| `SIGNING_KEYSTORE_BASE64` | Base64-encoded `.jks` / `.keystore` |
+| `SIGNING_STORE_PASSWORD` | Keystore password |
+| `SIGNING_KEY_ALIAS` | Key alias |
+| `SIGNING_KEY_PASSWORD` | Key password |
 
 ## License
 
